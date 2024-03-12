@@ -37,7 +37,28 @@
                 {% endfor %}
             </tbody>
         </table>
-        
+      <!-- Renderizar enlaces de paginación -->
+    {% if pagination %}
+    <div class="pagination">
+        {% if pagination.has_prev %}
+            <a class="page-link" href="{{ url_for('index', page=pagination.prev_num) }}">Anterior</a>
+        {% endif %}
+        {% for page_num in pagination.pages %}
+            {% if page_num %}
+                {% if page_num == pagination.page %}
+                    <strong>{{ page_num }}</strong>
+                {% else %}
+                    <a class="page-link" href="{{ url_for('index', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                <span class="ellipsis">...</span>
+            {% endif %}
+        {% endfor %}
+        {% if pagination.has_next %}
+            <a class="page-link" href="{{ url_for('index', page=pagination.next_num) }}">Siguiente</a>
+        {% endif %}
+    </div>
+    {% endif %}  
     </section>
     <section class="flex-container">
         <a class="fas fa-plus button" href="{{ url_for('agregar') }}"> Agregar Persona</a>

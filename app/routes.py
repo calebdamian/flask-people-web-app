@@ -2,11 +2,20 @@ from flask import render_template, request, redirect, url_for
 from app import app, db
 from app.models import Persona
 from app.forms import PersonaForm
+from flask_paginate import Pagination, get_page_args
 @app.route('/')
 def index():
     """Ruta principal para mostrar todas las personas, además de las acciones disponibles."""
-    personas = Persona.query.all()
-    return render_template('index.html', personas=personas)
+      # Obtener los parámetros de la paginación desde la solicitud HTTP
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+
+    # Obtener todas las personas de la base de datos
+    personas = Persona.query.order_by(Persona.id).offset(offset).limit(per_page).all()
+
+    # Crear la instancia de paginación
+    pagination = Pagination(page=page, per_page=per_page, total=Persona.query.count())
+
+    return render_template('index.html', personas=personas, pagination= pagination)
 
 @app.route('/agregar', methods=['GET', 'POST'])
 def agregar():
@@ -50,7 +59,10 @@ def editar(id):
 @app.route('/eliminar/<int:id>')
 def eliminar(id):
     """Ruta para eliminar una persona."""
-    persona = Persona.query.get_or_404(id)
-    db.session.delete(persona)
-    db.session.commit()
-    return redirect(url_for('index'))
+    try:
+     persona = Persona.query.get_or_404(id)
+     db.session.delete(persona)
+     db.session.commit()
+     return redirect(url_for('index'))
+    except Exception as e:
+        return render_template('error.html', error=str(e)), 500
