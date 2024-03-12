@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Editar Persona</title>
+</head>
+<body>
+    <h1>Editar Persona</h1>
+    <section class="flex-container-column">
+        <form action="{{ url_for('editar', id=persona.id) }}" method="POST">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="{{ persona.nombre }}" required><br><br>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" value="{{ persona.apellido }}" required><br><br>
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" value="{{ persona.edad }}" required><br><br>
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" value="{{ persona.direccion }}"><br><br>
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" name="correo" value="{{ persona.correo }}" required><br><br>
+            <button class="button">Guardar cambios</button>
+        </form>
+    </section>
+   
+</body>
+</html>

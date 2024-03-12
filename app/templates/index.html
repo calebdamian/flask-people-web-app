@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Personas</h1>
+    <section class="container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for persona in personas %}
+                <tr>
+                    <td>{{ persona.nombre }}</td>
+                    <td>{{ persona.apellido }}</td>
+                    <td>{{ persona.edad }}</td>
+                    <td>{{ persona.direccion }}</td>
+                    <td>{{ persona.correo }}</td>
+                    <td>
+                        <a class="fas fa-edit" href="{{ url_for('editar', id=persona.id) }}"> Editar</a>
+                        <a class="fas fa-trash-alt" href="{{ url_for('eliminar', id=persona.id) }}"> Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </section>
+    <section class="flex-container">
+        <a class="fas fa-plus button" href="{{ url_for('agregar') }}"> Agregar Persona</a>
+    </section>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Agregar Persona</title>
+</head>
+<body>
+    <h1>Nueva Persona</h1>
+    <section class="flex-container-column">
+    <form action="{{ url_for('agregar') }}" method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.nombre.label }} {{ form.nombre() }}
+            {% for error in form.nombre.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.apellido.label }} {{ form.apellido() }}
+            {% for error in form.apellido.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.edad.label }} {{ form.edad() }}
+            {% for error in form.edad.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.direccion.label }} {{ form.direccion() }}
+            {% for error in form.direccion.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div>
+            {{ form.correo.label }} {{ form.correo() }}
+            {% for error in form.correo.errors %}
+            <span style="color: red;">{{ error }}</span>
+            {% endfor %}
+        </div>
+        <div id="submit">
+            {{ form.submit(class="button") }}
+        </div>
+        
+    </form>
+</section>
+</body>
+</html>
