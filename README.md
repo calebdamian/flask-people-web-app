@@ -1,3 +1,4 @@
+
 Guía para ejecutar el proyecto Flask
 ====================================
 
@@ -27,8 +28,6 @@ Instalación de dependencias
 ---------------------------
 
 1.  Instala las dependencias del proyecto:
-
-    bashCopy code
 
     `pip install -r requirements.txt`
 
