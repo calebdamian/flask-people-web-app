@@ -46,6 +46,11 @@ body {
     justify-content: center;
 }
 
+.flex-container form{
+    width: 100%;
+    margin: 2%;
+}
+
 .flex-container-column{
     display: flex;
     flex-direction: column;
@@ -130,6 +135,30 @@ th {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #c1121f;
+    border: 1px solid #c1121f;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.pagination a.active {
+    background-color: #c1121f;
+    color: white;
+}
+
+.pagination a:hover {
+    background-color: #babbbc;
 }
 
 
